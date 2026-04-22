@@ -1,0 +1,98 @@
+/* src/index.css */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap');
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --green: #1a6b35;
+  --green-light: #2d8a4a;
+  --green-3: #e8f5ee;
+  --green-4: #c8e8d4;
+  --gold: #c8982a;
+  --gold-light: #e8b84b;
+  --gold-3: #fdf5dc;
+  --earth: #b5873a;
+  --earth-3: #faf3ea;
+  --dark: #0d2410;
+  --dark-2: #1a3d20;
+  --white: #fff;
+  --cream: #faf6ef;
+  --text: #1a1209;
+  --muted: #7a6545;
+  --red: #c82a2a;
+  --blue: #1a5a8a;
+  --blue-3: #e0eef8;
+  --shadow-sm: 0 2px 8px rgba(0,0,0,.06);
+  --shadow-md: 0 6px 24px rgba(0,0,0,.10);
+  --shadow-lg: 0 16px 48px rgba(0,0,0,.14);
+  --radius: 10px;
+  --radius-lg: 16px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Jost', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  font-size: 14px;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--cream); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+/* Utilities */
+.serif { font-family: 'Cormorant Garamond', serif; }
+.text-green { color: var(--green); }
+.text-gold  { color: var(--gold); }
+.text-earth { color: var(--earth); }
+.text-muted { color: var(--muted); }
+.bg-green3  { background: var(--green-3); }
+.bg-gold3   { background: var(--gold-3); }
+.bg-earth3  { background: var(--earth-3); }
+.bg-cream   { background: var(--cream); }
+
+/* Page-level fade-in */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.page-enter { animation: fadeInUp .35s ease both; }
+
+/* Cart slide-in */
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-10px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.cart-item-enter { animation: slideInLeft .2s ease; }
+
+/* Modal bounce */
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.modal-enter { animation: modalIn .25s ease; }
+
+/* Pulse for current order step */
+@keyframes pulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(200,152,42,.4); }
+  50%      { box-shadow: 0 0 0 8px rgba(200,152,42,0); }
+}
+
+/* WA float */
+@keyframes waFloat {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-7px); }
+}
+
+@media print {
+  nav, .wa-float, .toast-container, [class*="overlay"] { display: none !important; }
+}
+
+@media (max-width: 768px) {
+  html { font-size: 13px; }
+}
