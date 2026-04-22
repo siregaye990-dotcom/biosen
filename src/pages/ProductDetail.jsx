@@ -6,6 +6,7 @@ import { FaStar } from 'react-icons/fa'
 import toast from 'react-hot-toast'
 import { PRODUCTS, PRICES } from '../utils/products'
 import { useCart } from '../context/CartContext'
+import SACHETS_B64 from '../assets/sachets_b64'
 import styles from './ProductDetail.module.css'
 
 export default function ProductDetail() {
@@ -46,7 +47,7 @@ export default function ProductDetail() {
       </button>
 
       {/* Hero */}
-      <div className={styles.hero} style={{ background: `linear-gradient(135deg, ${product.color}22, ${product.color}44)` }}>
+      <div className={styles.hero}>
         <div className={styles.heroImgPlaceholder}>
           <div className={styles.heroEmoji}>🌾</div>
           <p className={styles.heroImgNote}>Photo du produit</p>

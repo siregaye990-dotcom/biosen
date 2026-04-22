@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { FaWhatsapp, FaInstagram, FaFacebook } from 'react-icons/fa'
 import { MdEmail, MdPhone, MdLocationOn } from 'react-icons/md'
 import { CONTACT_EMAIL, CONTACT_PHONE, WHATSAPP_NUMBER } from '../utils/products'
+import LOGO_B64 from '../assets/logo_b64'
 import styles from './Footer.module.css'
 
 export default function Footer() {

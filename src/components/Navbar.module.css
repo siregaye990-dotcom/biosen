@@ -130,3 +130,10 @@
   .brand { font-size: 15px; }
   .trackPill { display: none; }
 }
+
+/* Real logo image */
+.logoImg {
+  width: 38px; height: 38px; border-radius: 50%;
+  border: 2px solid var(--gold); object-fit: cover;
+  mix-blend-mode: screen;
+}

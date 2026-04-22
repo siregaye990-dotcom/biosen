@@ -7,6 +7,8 @@ import { GiMortar } from 'react-icons/gi'
 import toast from 'react-hot-toast'
 import { useCart } from '../context/CartContext'
 import { PRODUCTS, PRICES, PROMO_CODES, WHATSAPP_NUMBER } from '../utils/products'
+import { useStock } from '../hooks/useStock'
+import SACHETS_B64 from '../assets/sachets_b64'
 import Checkout from '../components/Checkout'
 import styles from './Shop.module.css'
 

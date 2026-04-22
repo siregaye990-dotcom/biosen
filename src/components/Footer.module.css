@@ -205,3 +205,9 @@
   .inner { grid-template-columns: 1fr; gap: 1.5rem; padding: 2rem 1rem 1.5rem; }
   .bottomInner { flex-direction: column; text-align: center; }
 }
+
+.logoImg {
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 2px solid var(--gold); object-fit: cover;
+  mix-blend-mode: screen; flex-shrink: 0;
+}
