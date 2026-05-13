@@ -1,6 +1,6 @@
 // src/components/Navbar.jsx
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { FiShoppingBasket, FiSearch } from 'react-icons/fi'
+import { FiShoppingCart, FiSearch } from 'react-icons/fi'
 import { useCart } from '../context/CartContext'
 import LOGO_B64 from '../assets/logo_b64'
 import styles from './Navbar.module.css'
@@ -28,7 +28,7 @@ export default function Navbar() {
           <FiSearch size={12}/> Suivre ma commande
         </button>
         <button className={styles.cartPill} onClick={() => navigate('/boutique')}>
-          <FiShoppingBasket size={14}/>
+          <FiShoppingCart size={14}/>
           {count > 0 && <span className={styles.cartCount}>{count}</span>}
         </button>
       </div>
