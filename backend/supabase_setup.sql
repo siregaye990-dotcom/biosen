@@ -1,5 +1,5 @@
 -- ============================================================
--- BIO SÉN — Script SQL complet pour Supabase
+-- SWEETBIO — Script SQL complet pour Supabase
 -- Copiez-collez ce script dans l'onglet SQL Editor de Supabase
 -- ============================================================
 

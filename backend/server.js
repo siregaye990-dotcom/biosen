@@ -11,7 +11,7 @@ app.use(express.json());
 
 // Routes de base
 app.get('/', (req, res) => {
-  res.send('Serveur Bio Sén opérationnel !');
+  res.send('Serveur SweetBio opérationnel !');
 });
 
 app.get('/api/health', (req, res) => {
@@ -19,7 +19,7 @@ app.get('/api/health', (req, res) => {
 });
 
 // Connexion MongoDB
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/biosen';
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/sweetbio';
 mongoose.connect(MONGODB_URI)
   .then(() => console.log('Connecté à MongoDB avec succès'))
   .catch(err => console.error('Erreur de connexion MongoDB:', err));

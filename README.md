@@ -1,8 +1,8 @@
-# 🌾 Bio Sén — Site E-Commerce React
+# 🌾 SweetBio — Site E-Commerce React
 
 > L'essence du Sénégal, naturellement
 
-Application e-commerce complète pour **Bio Sén**, construite avec React + Supabase.
+Application e-commerce complète pour **SweetBio**, construite avec React + Supabase.
 
 ---
 
@@ -10,8 +10,8 @@ Application e-commerce complète pour **Bio Sén**, construite avec React + Supa
 
 ```bash
 # 1. Cloner le projet
-git clone https://github.com/siregaye990-dotcom/biosen.git
-cd biosen
+git clone https://github.com/siregaye990-dotcom/sweetbio.git
+cd sweetbio
 
 # 2. Installer les dépendances
 npm install
@@ -132,7 +132,7 @@ Dans Supabase → **Authentication → Users → Invite User** :
 - ✅ Notification WhatsApp automatique à la commande
 - ✅ Suivi commande avec timeline animée
 - ✅ Fiches produits détaillées (ingrédients, nutrition, recettes, avis)
-- ✅ Codes promo (BIOS10, BIO20, SENEGAL15, BIOSEN10)
+- ✅ Codes promo (SWEET10, BIO20, SENEGAL15, SWEETBIO10)
 - ✅ Livraison gratuite dès 5 000 FCFA
 - ✅ Bouton WhatsApp flottant
 
@@ -149,7 +149,7 @@ Dans Supabase → **Authentication → Users → Invite User** :
 
 ---
 
-## 📞 Contact Bio Sén
+## 📞 Contact SweetBio
 
 - **Téléphone / WhatsApp** : +221 77 068 60 34
 - **Email** : siregaye990@gmail.com
@@ -189,4 +189,4 @@ npm run build
 
 ---
 
-*Bio Sén © 2026 — L'essence du Sénégal, naturellement 🌾*
+*SweetBio © 2026 — L'essence du Sénégal, naturellement 🌾*

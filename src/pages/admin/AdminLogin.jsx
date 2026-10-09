@@ -36,7 +36,7 @@ export default function AdminLogin() {
           </div>
         </div>
 
-        <h1 className={styles.title}>Bio <em>Sén</em> Admin</h1>
+        <h1 className={styles.title}>Sweet<em>Bio</em> Admin</h1>
         <p className={styles.sub}>Espace réservé à l'administrateur</p>
 
         {error && (
@@ -53,7 +53,7 @@ export default function AdminLogin() {
             <input
               id="email"
               type="email"
-              placeholder="admin@biosen.sn"
+              placeholder="admin@sweetbio.sn"
               value={email}
               onChange={e => setEmail(e.target.value)}
               autoComplete="email"

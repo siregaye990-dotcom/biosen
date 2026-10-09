@@ -1,6 +1,6 @@
-# Bio Sén — Backend
+# SweetBio — Backend
 
-Ce dossier contient la configuration du backend pour Bio Sén, basée sur Supabase.
+Ce dossier contient la configuration du backend pour SweetBio, basée sur Supabase.
 
 ## Contenu
 - `supabase_setup.sql` : script SQL pour créer les tables `orders`, `stock`, `visits` et les politiques de sécurité.

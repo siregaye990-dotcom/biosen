@@ -57,7 +57,7 @@ export default function AdminDashboard() {
       setVisits(v || [])
     } catch {
       // Fallback to localStorage
-      const local = JSON.parse(localStorage.getItem('biosen_orders_fallback') || '[]')
+      const local = JSON.parse(localStorage.getItem('sweetbio_orders_fallback') || '[]')
       setOrders(local.length ? local : SEED_ORDERS())
       setStock(SEED_STOCK)
       // Mock 7-day visits
@@ -90,9 +90,9 @@ export default function AdminDashboard() {
       await ordersApi.updateStatus(order.id, newStatus)
     } catch {
       // Fallback: update localStorage
-      const local = JSON.parse(localStorage.getItem('biosen_orders_fallback') || '[]')
+      const local = JSON.parse(localStorage.getItem('sweetbio_orders_fallback') || '[]')
       const updated = local.map(o => o.order_number === order.order_number ? { ...o, status: newStatus } : o)
-      localStorage.setItem('biosen_orders_fallback', JSON.stringify(updated))
+      localStorage.setItem('sweetbio_orders_fallback', JSON.stringify(updated))
     }
     setOrders(prev => prev.map(o => o.id === order.id ? { ...o, status: newStatus } : o))
     toast.success(`→ ${STATUS_MAP[newStatus]?.label}`)
@@ -103,9 +103,9 @@ export default function AdminDashboard() {
     try {
       await ordersApi.cancel(order.id)
     } catch {
-      const local = JSON.parse(localStorage.getItem('biosen_orders_fallback') || '[]')
+      const local = JSON.parse(localStorage.getItem('sweetbio_orders_fallback') || '[]')
       const updated = local.map(o => o.order_number === order.order_number ? { ...o, status: 'cancelled' } : o)
-      localStorage.setItem('biosen_orders_fallback', JSON.stringify(updated))
+      localStorage.setItem('sweetbio_orders_fallback', JSON.stringify(updated))
     }
     setOrders(prev => prev.map(o => o.id === order.id ? { ...o, status: 'cancelled' } : o))
     toast.success('Commande annulée')
@@ -136,7 +136,7 @@ export default function AdminDashboard() {
     const csv = rows.map(r => r.map(c => `"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n')
     const a = document.createElement('a')
     a.href = URL.createObjectURL(new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8' }))
-    a.download = `commandes_biosen_${new Date().toLocaleDateString('fr-FR').replace(/\//g,'-')}.csv`
+    a.download = `commandes_sweetbio_${new Date().toLocaleDateString('fr-FR').replace(/\//g,'-')}.csv`
     a.click()
     toast.success('📊 CSV téléchargé !')
   }
@@ -146,7 +146,7 @@ export default function AdminDashboard() {
     const doc = new jsPDF()
     doc.setFontSize(18)
     doc.setTextColor(26, 107, 53)
-    doc.text('Bio Sén — Feuille de livraison', 14, 22)
+    doc.text('SweetBio — Feuille de livraison', 14, 22)
     doc.setFontSize(10); doc.setTextColor(100)
     doc.text(`Générée le ${new Date().toLocaleDateString('fr-FR')} · ${pending.length} commande(s)`, 14, 30)
     let y = 42
@@ -163,7 +163,7 @@ export default function AdminDashboard() {
       doc.line(14, y+22, 196, y+22)
       y += 28
     })
-    doc.save(`livraisons_biosen_${new Date().toLocaleDateString('fr-FR').replace(/\//g,'-')}.pdf`)
+    doc.save(`livraisons_sweetbio_${new Date().toLocaleDateString('fr-FR').replace(/\//g,'-')}.pdf`)
     toast.success('🖨️ PDF téléchargé !')
   }
 
@@ -173,7 +173,7 @@ export default function AdminDashboard() {
     if (!receipt) return
     const doc = new jsPDF()
     doc.setFontSize(20); doc.setTextColor(26, 107, 53)
-    doc.text('Bio Sén', 14, 20)
+    doc.text('SweetBio', 14, 20)
     doc.setFontSize(10); doc.setTextColor(100)
     doc.text("L'essence du Sénégal, naturellement", 14, 28)
     doc.setFontSize(16); doc.setTextColor(30)
@@ -194,7 +194,7 @@ export default function AdminDashboard() {
     doc.text(`Total payé : ${(receipt.total||0).toLocaleString('fr-FR')} FCFA`, 14, y + 6)
     doc.text(`Paiement : ${receipt.payment_method||'—'}`, 14, y + 14)
     doc.setFontSize(9); doc.setTextColor(150)
-    doc.text("Bio Sén — L'essence du Sénégal, naturellement", 14, 275)
+    doc.text("SweetBio — L'essence du Sénégal, naturellement", 14, 275)
     doc.text('siregaye990@gmail.com  ·  +221 77 068 60 34', 14, 281)
     doc.save(`recu_${receipt.order_number}.pdf`)
     toast.success('🧾 Reçu PDF généré !')
@@ -210,7 +210,7 @@ export default function AdminDashboard() {
       <div className={styles.header}>
         <div>
           <h1 className={styles.headerTitle}>Dashboard <em>Admin</em></h1>
-          <p className={styles.headerSub}>Bio Sén · Gestion complète</p>
+          <p className={styles.headerSub}>SweetBio · Gestion complète</p>
         </div>
         <div className={styles.headerActions}>
           <button className={styles.refreshBtn} onClick={loadData} title="Rafraîchir">
@@ -426,7 +426,7 @@ export default function AdminDashboard() {
                 <div className={styles.rcptRow}><span>Paiement</span><span>{receipt.payment_method||receipt.pay}</span></div>
                 <div className={styles.rcptGrand}><span>Total payé</span><span className={styles.rcptGrandVal}>{(receipt.total||0).toLocaleString('fr-FR')} FCFA</span></div>
               </div>
-              <p className={styles.rcptNote}>Bio Sén — siregaye990@gmail.com · +221 77 068 60 34</p>
+              <p className={styles.rcptNote}>SweetBio — siregaye990@gmail.com · +221 77 068 60 34</p>
               <button className={styles.rcptPrintBtn} onClick={printReceipt}><FiDownload size={12}/> Télécharger PDF</button>
               <button className={styles.rcptCloseBtn} onClick={() => setReceipt(null)}>Fermer</button>
             </div>

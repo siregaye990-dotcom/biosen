@@ -24,7 +24,7 @@ const VALS = [
 ]
 const REVS = [
   { initials:'FD', name:'Fatou Diallo',    city:'Dakar, Médina',  stars:5, text:'Le meilleur Thiéré ! La qualité est au rendez-vous, les grains sont parfaits. Ma famille adore !' },
-  { initials:'AN', name:'Aissatou Ndiaye', city:'Thiès',          stars:5, text:'Exactement le goût de mon enfance ! Le Thiakry de Bio Sén est authentique et délicieux.' },
+  { initials:'AN', name:'Aissatou Ndiaye', city:'Thiès',          stars:5, text:'Exactement le goût de mon enfance ! Le Thiakry de SweetBio est authentique et délicieux.' },
   { initials:'MS', name:'Moussa Sow',      city:'Dakar, Plateau', stars:5, text:'Commandé plusieurs fois. Qualité constante. Parfait pour le thiéré du vendredi.' },
 ]
 
@@ -36,7 +36,7 @@ export default function Home() {
   const goShop = () => navigate('/boutique')
   const handleNL = () => {
     if (!nlPhone.trim()) return
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Bonjour Bio Sén ! Je souhaite recevoir vos promotions. Mon numéro : '+nlPhone)}`, '_blank')
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Bonjour SweetBio ! Je souhaite recevoir vos promotions. Mon numéro : '+nlPhone)}`, '_blank')
     setNlPhone('')
   }
   return (
@@ -44,10 +44,10 @@ export default function Home() {
       {/* HERO */}
       <section className={styles.hero}>
         <div className={styles.heroInner}>
-          <img src={LOGO_B64} alt="Bio Sén" className={styles.heroLogo}/>
+          <img src={LOGO_B64} alt="SweetBio" className={styles.heroLogo}/>
           <div className={styles.heroText}>
             <div className={styles.heroBadge}><FaLeaf size={10}/> Origine Sénégal · 100% Bio</div>
-            <h1 className={styles.heroH1}>BIO<br/><em>SÉN</em></h1>
+            <h1 className={styles.heroH1}>SWEET<br/><em>BIO</em></h1>
             <p className={styles.heroSub}>L'essence du Sénégal, naturellement</p>
             <p className={styles.heroP}>Arraw, Thiéré, Thiakry — céréales ancestrales sénégalaises précuites au sable filtré. Certifiées 100% biologiques, sans additifs, livrées chez vous.</p>
             <div className={styles.heroBtns}>
