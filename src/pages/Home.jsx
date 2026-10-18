@@ -2,20 +2,13 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FiArrowRight, FiSearch } from 'react-icons/fi'
-import { FaLeaf, FaTruck, FaWhatsapp, FaStar } from 'react-icons/fa'
-import { GiWheat, GiMortar } from 'react-icons/gi'
+import { FaLeaf, FaTruck, FaWhatsapp } from 'react-icons/fa'
+import { GiWheat } from 'react-icons/gi'
 import { MdBolt } from 'react-icons/md'
-import LOGO_B64    from '../assets/logo_b64'
-import SACHETS_B64 from '../assets/sachets_b64'
-import { PRODUCTS, WHATSAPP_NUMBER } from '../utils/products'
+import { WHATSAPP_NUMBER } from '../utils/products'
 import { visitsApi } from '../lib/supabase'
 import styles from './Home.module.css'
 
-const SC = [
-  { pos:'14% center', name:'Arraw de Mil',  tag:'Grains ronds précuits · 100% Bio' },
-  { pos:'50% center', name:'Thiéré de Mil', tag:'Couscous de mil · Le plus vendu'  },
-  { pos:'84% center', name:'Thiakry de Mil',tag:'Dessert traditionnel sénégalais'  },
-]
 const VALS = [
   { icon:<FaLeaf/>,  title:'100% Bio',      i:0, text:'Cultivées sans pesticides. Certifiées biologiques du champ à votre table.' },
   { icon:<GiWheat/>, title:'Tradition',     i:1, text:'Recettes ancestrales. Cuisson au sable filtré transmise de génération en génération.' },
@@ -30,7 +23,6 @@ const REVS = [
 
 export default function Home() {
   const navigate = useNavigate()
-  const [active, setActive] = useState(0)
   const [nlPhone, setNlPhone] = useState('')
   useEffect(() => { visitsApi.track().catch(()=>{}) }, [])
   const goShop = () => navigate('/boutique')
@@ -44,7 +36,7 @@ export default function Home() {
       {/* HERO */}
       <section className={styles.hero}>
         <div className={styles.heroInner}>
-          <img src={LOGO_B64} alt="SweetBio" className={styles.heroLogo}/>
+          <img src="/sweetbio-hero-logo.png" alt="SweetBio" className={styles.heroLogo}/>
           <div className={styles.heroText}>
             <div className={styles.heroBadge}><FaLeaf size={10}/> Origine Sénégal · 100% Bio</div>
             <h1 className={styles.heroH1}>SWEET<br/><em>BIO</em></h1>
@@ -64,46 +56,15 @@ export default function Home() {
       </section>
 
       {/* SHOWCASE */}
-      <section className={styles.section}><div className={styles.inner}>
-        <div className={styles.sLabel}>Nos produits phares</div>
-        <h2 className={styles.sTitle}>Trois <em>trésors</em> du terroir</h2>
+      <section className={styles.section}><div className={styles.sectionInner}>
+        <div className={styles.sectionLabel}>Nos produits phares</div>
+        <h2 className={styles.sectionTitle}>Trois <em>trésors</em> du terroir</h2>
         <div className={styles.divider}/>
-        <div className={styles.showcase}>
-          <div className={styles.scImgWrap}>
-            <img src={SACHETS_B64} alt={SC[active].name} className={styles.scImg} style={{objectPosition: SC[active].pos}}/>
-            <div className={styles.scOverlay}>
-              <div><div className={styles.scName}>{SC[active].name}</div><div className={styles.scTag}>{SC[active].tag}</div></div>
-              <button className={styles.scBtn} onClick={goShop}>Commander <FiArrowRight size={11}/></button>
-            </div>
-            <div className={styles.dots}>{SC.map((_,i) => <button key={i} className={`${styles.dot}${i===active?' '+styles.dotOn:''}`} onClick={()=>setActive(i)} aria-label={`Produit ${i+1}`}/>)}</div>
-          </div>
-          <div className={styles.stabs}>
-            {PRODUCTS.map((p,i) => (
-              <div key={p.id} className={`${styles.stab}${i===active?' '+styles.stabOn:''} ${styles['s'+i]}`} onClick={()=>setActive(i)}>
-                <div className={`${styles.sIcon} ${styles['si'+i]}${i===active?' '+styles['sio'+i]:''}`}>{i===0?<FaLeaf/>:i===1?<FaStar/>:<GiMortar/>}</div>
-                <div className={styles.sInfo}><div className={styles.sName}>{p.name}</div><div className={styles.sDesc}>{p.shortDesc.slice(0,52)}…</div></div>
-                <div className={styles.sPrice} style={{color:p.color}}>800 F/500g</div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Product cards */}
-        <div className={styles.prodCards}>
-          {PRODUCTS.map((p,i) => (
-            <div key={p.id} className={styles.prodCard} onClick={()=>navigate('/boutique/'+p.slug)}>
-              <div className={styles.pcImg}>
-                <img src={SACHETS_B64} alt={p.name} style={{objectPosition:SC[i].pos}}/>
-                <span className={styles.pcTag} style={{background:p.color,color:p.id===2?'#1a1209':'#fff'}}>{p.badge}</span>
-              </div>
-              <div className={styles.pcBody}>
-                <div className={styles.pcName}>{p.name}</div>
-                <div className={styles.pcDesc}>{p.shortDesc.slice(0,58)}…</div>
-                <div className={styles.pcPrice} style={{color:p.color}}>800 FCFA <span>/ 500g · 1 600 FCFA / 1kg</span></div>
-              </div>
-            </div>
-          ))}
-        </div>
+        <img
+          src="/sweetbio-three-products.png"
+          alt="Les sachets SweetBio Arraw de mil, Thiéré de mil et Thiakry de mil côte à côte"
+          className={styles.productsImage}
+        />
 
         {/* Values */}
         <div className={styles.vGrid}>

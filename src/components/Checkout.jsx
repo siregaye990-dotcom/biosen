@@ -22,7 +22,7 @@ function generateOrderId() {
 }
 
 export default function Checkout({ onClose }) {
-  const { items, subtotal, shipping, discount, total, promo, clear } = useCart()
+  const { items, total, promo, clear } = useCart()
   const [form, setForm]   = useState({ name: '', phone: '', addr: '', addr2: '', note: '' })
   const [payMode, setPay] = useState('Orange Money')
   const [loading, setLoading] = useState(false)
@@ -111,9 +111,6 @@ export default function Checkout({ onClose }) {
                   <span>{i.total.toLocaleString('fr-FR')} F</span>
                 </div>
               ))}
-              {shipping > 0 && (
-                <div className={styles.recapRow}><span>Livraison</span><span>{shipping.toLocaleString('fr-FR')} F</span></div>
-              )}
               <div className={styles.recapTotal}>
                 <span>Total à payer</span>
                 <span>{total.toLocaleString('fr-FR')} FCFA</span>

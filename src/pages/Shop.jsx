@@ -15,7 +15,7 @@ import styles from './Shop.module.css'
 const TAG_ICONS = [<FaLeaf size={8}/>, <FaStar size={8}/>, <GiMortar size={8}/>]
 
 export default function Shop() {
-  const { items, subtotal, shipping, discount, total, count, addItem, updateQty, removeItem, clear, applyPromo, promo } = useCart()
+  const { items, subtotal, discount, total, addItem, updateQty, removeItem, clear, applyPromo, promo } = useCart()
   const [selSize, setSelSize] = useState({ 1: '500g', 2: '500g', 3: '500g' })
   const [qty, setQty]         = useState({ 1: 1, 2: 1, 3: 1 })
   const [added, setAdded]     = useState({})
@@ -176,7 +176,6 @@ export default function Shop() {
           {/* Totals */}
           <div className={styles.totals}>
             <div className={styles.totRow}><span>Sous-total</span><span>{subtotal.toLocaleString('fr-FR')} FCFA</span></div>
-            <div className={styles.totRow}><span>Livraison</span><span>{items.length === 0 ? '—' : shipping === 0 ? 'Gratuite ✓' : `${shipping.toLocaleString('fr-FR')} FCFA`}</span></div>
             {promo && <div className={`${styles.totRow} ${styles.totPromo}`}><span>Promo ({promo.code})</span><span>−{discount.toLocaleString('fr-FR')} FCFA</span></div>}
             <div className={`${styles.totRow} ${styles.totGrand}`}><span>Total</span><span className={styles.totVal}>{total.toLocaleString('fr-FR')} FCFA</span></div>
           </div>
