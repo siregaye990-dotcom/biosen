@@ -36,7 +36,7 @@ export default function Home() {
       {/* HERO */}
       <section className={styles.hero}>
         <div className={styles.heroInner}>
-          <img src="/sweetbio-hero-logo.png" alt="SweetBio" className={styles.heroLogo}/>
+          <img src="/image.png" alt="SweetBio" className={styles.heroLogo}/>
           <div className={styles.heroText}>
             <div className={styles.heroBadge}><FaLeaf size={10}/> Origine Sénégal · 100% Bio</div>
             <h1 className={styles.heroH1}>SWEET<br/><em>BIO</em></h1>

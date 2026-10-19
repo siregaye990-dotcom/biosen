@@ -5,15 +5,8 @@ import { FaWhatsapp } from 'react-icons/fa'
 import toast from 'react-hot-toast'
 import { useCart } from '../context/CartContext'
 import { ordersApi, stockApi } from '../lib/supabase'
-import { WHATSAPP_NUMBER, CONTACT_PHONE } from '../utils/products'
+import { WHATSAPP_NUMBER } from '../utils/products'
 import styles from './Checkout.module.css'
-
-const PAY_OPTIONS = [
-  { id: 'Orange Money', icon: '🟠', label: 'Orange Money' },
-  { id: 'Wave',         icon: '🔵', label: 'Wave'         },
-  { id: 'Carte',        icon: '💳', label: 'Carte'        },
-  { id: 'Cash',         icon: '💵', label: 'Cash'         },
-]
 
 let orderCounter = 1005
 
@@ -24,7 +17,6 @@ function generateOrderId() {
 export default function Checkout({ onClose }) {
   const { items, total, promo, clear } = useCart()
   const [form, setForm]   = useState({ name: '', phone: '', addr: '', addr2: '', note: '' })
-  const [payMode, setPay] = useState('Orange Money')
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(null) // { orderId, waUrl }
 
@@ -48,7 +40,7 @@ export default function Checkout({ onClose }) {
         address:        fullAddr,
         items:          itemsStr,
         total:          total,
-        payment_method: payMode,
+        payment_method: 'À convenir',
         status:         'pending',
         note:           form.note,
         promo_code:     promo?.code || null,
@@ -76,7 +68,7 @@ export default function Checkout({ onClose }) {
         `📍 *Adresse :* ${fullAddr}\n` +
         `🛒 *Produits :* ${itemsStr}\n` +
         `💰 *Total :* ${total.toLocaleString('fr-FR')} FCFA\n` +
-        `💳 *Paiement :* ${payMode}` +
+        `💳 *Paiement :* À convenir` +
         (form.note ? `\n📝 *Note :* ${form.note}` : '') +
         `\n\n✅ Merci de traiter cette commande !`
       )
@@ -134,22 +126,6 @@ export default function Checkout({ onClose }) {
             <div className={styles.fg}>
               <label>🗺️ Adresse précise</label>
               <input placeholder="Rue, bâtiment, point de repère..." value={form.addr2} onChange={set('addr2')}/>
-            </div>
-
-            <div className={styles.fg}>
-              <label>💳 Mode de paiement *</label>
-              <div className={styles.payOpts}>
-                {PAY_OPTIONS.map(p => (
-                  <div
-                    key={p.id}
-                    className={`${styles.payOpt} ${payMode === p.id ? styles.payOptActive : ''}`}
-                    onClick={() => setPay(p.id)}
-                  >
-                    <span className={styles.payIcon}>{p.icon}</span>
-                    <span className={styles.payLabel}>{p.label}</span>
-                  </div>
-                ))}
-              </div>
             </div>
 
             <div className={styles.fg}>

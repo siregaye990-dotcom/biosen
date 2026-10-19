@@ -1,7 +1,7 @@
 // src/pages/Shop.jsx
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { FiPlus, FiCheck, FiLock, FiShield, FiInfo } from 'react-icons/fi'
+import { FiPlus, FiCheck, FiLock, FiInfo } from 'react-icons/fi'
 import { FaLeaf, FaStar, FaWhatsapp } from 'react-icons/fa'
 import { GiMortar } from 'react-icons/gi'
 import toast from 'react-hot-toast'
@@ -66,11 +66,21 @@ export default function Shop() {
             <div key={product.id} className={styles.card}>
               {/* Image */}
               <div className={`${styles.cardImg} ${styles[`bg${idx}`]}`}>
-                <div className={styles.imgPlaceholder}>
-                  {TAG_ICONS[idx]}
-                  <span className={styles.imgLabel}>{product.name}</span>
-                </div>
-                <span className={`${styles.badge} ${styles[`badge${idx}`]}`}>{product.badge}</span>
+                {product.id === 1 ? (
+                  <img src="/arrawdemil.jpg" alt="Arraw de mil SweetBio" className={styles.productImage}/>
+                ) : product.id === 2 ? (
+                  <img src="/thieredemil.jpg" alt="Thiéré de mil SweetBio" className={styles.productImage}/>
+                ) : product.id === 3 ? (
+                  <img src="/thiakrydemil.jpg" alt="Thiakry de mil SweetBio" className={styles.productImage}/>
+                ) : (
+                  <div className={styles.imgPlaceholder}>
+                    {TAG_ICONS[idx]}
+                    <span className={styles.imgLabel}>{product.name}</span>
+                  </div>
+                )}
+                <span className={`${styles.badge} ${styles[`badge${idx}`]}`}>
+                  {product.id === 1 ? 'Arraw' : product.id === 2 ? 'Thiere' : product.id === 3 ? 'Thiakry' : product.badge}
+                </span>
                 <button className={styles.detailLink} onClick={() => navigate(`/boutique/${product.slug}`)}>
                   <FiInfo size={9}/> Fiche détaillée
                 </button>
@@ -183,10 +193,6 @@ export default function Shop() {
           <button className={styles.checkoutBtn} onClick={() => { if (!items.length) { toast.error('Votre panier est vide !'); return; } setCheckoutOpen(true) }}>
             <FiLock size={11}/> Commander maintenant
           </button>
-          <div className={styles.secureNote}>
-            <FiShield size={11} color="var(--green)"/> Orange Money · Wave · Carte
-          </div>
-
           {/* WA alternative */}
           <a
             href={`https://wa.me/${WHATSAPP_NUMBER}?text=Bonjour%20Bio%20S%C3%A9n%2C%20je%20voudrais%20commander%20!`}
