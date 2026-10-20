@@ -6,6 +6,7 @@ import { FaLeaf, FaStar, FaWhatsapp } from 'react-icons/fa'
 import { GiMortar } from 'react-icons/gi'
 import toast from 'react-hot-toast'
 import { useCart } from '../context/CartContext'
+import { useCurrency } from '../context/CurrencyContext'
 import { PRODUCTS, PRICES, PROMO_CODES, WHATSAPP_NUMBER } from '../utils/products'
 import { useStock } from '../hooks/useStock'
 import SACHETS_B64 from '../assets/sachets_b64'
@@ -16,6 +17,7 @@ const TAG_ICONS = [<FaLeaf size={8}/>, <FaStar size={8}/>, <GiMortar size={8}/>]
 
 export default function Shop() {
   const { items, subtotal, discount, total, addItem, updateQty, removeItem, clear, applyPromo, promo } = useCart()
+  const { formatAmount } = useCurrency()
   const [selSize, setSelSize] = useState({ 1: '500g', 2: '500g', 3: '500g' })
   const [qty, setQty]         = useState({ 1: 1, 2: 1, 3: 1 })
   const [added, setAdded]     = useState({})
@@ -109,7 +111,7 @@ export default function Shop() {
                         </div>
                         <span className={styles.fmtSize}>{size}</span>
                         <span className={`${styles.fmtPrice} ${getColorClass(product.id)}`}>
-                          {price.toLocaleString('fr-FR')} F
+                          {formatAmount(price)}
                         </span>
                       </label>
                     ))}
@@ -164,7 +166,7 @@ export default function Shop() {
                     <span className={styles.iqVal}>{item.qty}</span>
                     <button className={styles.iqBtn} onClick={() => updateQty(i, 1)}>+</button>
                   </div>
-                  <div className={styles.itemPrice}>{item.total.toLocaleString('fr-FR')} F</div>
+                  <div className={styles.itemPrice}>{formatAmount(item.total)}</div>
                   <button className={styles.removeBtn} onClick={() => removeItem(i)}>✕</button>
                 </div>
               ))
@@ -185,9 +187,9 @@ export default function Shop() {
 
           {/* Totals */}
           <div className={styles.totals}>
-            <div className={styles.totRow}><span>Sous-total</span><span>{subtotal.toLocaleString('fr-FR')} FCFA</span></div>
-            {promo && <div className={`${styles.totRow} ${styles.totPromo}`}><span>Promo ({promo.code})</span><span>−{discount.toLocaleString('fr-FR')} FCFA</span></div>}
-            <div className={`${styles.totRow} ${styles.totGrand}`}><span>Total</span><span className={styles.totVal}>{total.toLocaleString('fr-FR')} FCFA</span></div>
+            <div className={styles.totRow}><span>Sous-total</span><span>{formatAmount(subtotal)}</span></div>
+            {promo && <div className={`${styles.totRow} ${styles.totPromo}`}><span>Promo ({promo.code})</span><span>−{formatAmount(discount)}</span></div>}
+            <div className={`${styles.totRow} ${styles.totGrand}`}><span>Total</span><span className={styles.totVal}>{formatAmount(total)}</span></div>
           </div>
 
           <button className={styles.checkoutBtn} onClick={() => { if (!items.length) { toast.error('Votre panier est vide !'); return; } setCheckoutOpen(true) }}>

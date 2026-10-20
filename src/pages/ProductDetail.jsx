@@ -6,6 +6,7 @@ import { FaStar } from 'react-icons/fa'
 import toast from 'react-hot-toast'
 import { PRODUCTS, PRICES } from '../utils/products'
 import { useCart } from '../context/CartContext'
+import { useCurrency } from '../context/CurrencyContext'
 import SACHETS_B64 from '../assets/sachets_b64'
 import styles from './ProductDetail.module.css'
 
@@ -13,6 +14,7 @@ export default function ProductDetail() {
   const { slug } = useParams()
   const navigate  = useNavigate()
   const { addItem } = useCart()
+  const { formatAmount } = useCurrency()
 
   const product = PRODUCTS.find(p => p.slug === slug)
 
@@ -162,7 +164,7 @@ export default function ProductDetail() {
                     <div>
                       <div className={styles.fmtSize}>{size}</div>
                       <div className={styles.fmtPrice} style={{ color: product.color }}>
-                        {price.toLocaleString('fr-FR')} FCFA
+                        {formatAmount(price)}
                       </div>
                     </div>
                   </label>
@@ -182,7 +184,7 @@ export default function ProductDetail() {
             <div className={styles.totalRow}>
               <span>Total</span>
               <span className={styles.totalVal} style={{ color: product.color }}>
-                {(PRICES[selSize] * qty).toLocaleString('fr-FR')} FCFA
+                {formatAmount(PRICES[selSize] * qty)}
               </span>
             </div>
 
