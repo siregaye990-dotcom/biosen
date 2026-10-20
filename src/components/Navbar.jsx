@@ -2,11 +2,13 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { FiShoppingCart, FiSearch } from 'react-icons/fi'
 import { useCart } from '../context/CartContext'
+import { useAuth } from '../context/AuthContext'
 import { useCurrency } from '../context/CurrencyContext'
 import styles from './Navbar.module.css'
 
 export default function Navbar() {
   const { count } = useCart()
+  const { isAdmin } = useAuth()
   const { currency, setCurrency, CURRENCIES } = useCurrency()
   const location  = useLocation()
   const navigate  = useNavigate()
@@ -21,7 +23,7 @@ export default function Navbar() {
         <Link to="/"         className={`${styles.tab} ${isActive('/')        && !isActive('/boutique') && !isActive('/suivi') && !isActive('/admin') ? styles.active : ''}`}>Accueil</Link>
         <Link to="/boutique" className={`${styles.tab} ${isActive('/boutique') ? styles.active : ''}`}>Boutique</Link>
         <Link to="/suivi"    className={`${styles.tab} ${isActive('/suivi')    ? styles.active : ''}`}>Suivi</Link>
-        <Link to="/admin"    className={`${styles.tab} ${isActive('/admin')    ? styles.active : ''}`}>Admin</Link>
+        {isAdmin && <Link to="/admin" className={`${styles.tab} ${isActive('/admin') ? styles.active : ''}`}>Admin</Link>}
       </div>
       <div className={styles.actions}>
         <div className={styles.currencyWrap}>
