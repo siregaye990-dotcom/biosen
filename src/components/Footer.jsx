@@ -1,6 +1,7 @@
 // src/components/Footer.jsx
 import { Link } from 'react-router-dom'
 import { FaWhatsapp, FaInstagram, FaFacebook } from 'react-icons/fa'
+import { FaTiktok } from 'react-icons/fa6'
 import { MdEmail, MdPhone, MdLocationOn } from 'react-icons/md'
 import { CONTACT_EMAIL, CONTACT_PHONE, WHATSAPP_NUMBER } from '../utils/products'
 import LOGO_B64 from '../assets/logo_b64'
@@ -48,6 +49,14 @@ export default function Footer() {
               aria-label="Facebook"
             >
               <FaFacebook size={16} />
+            </a>
+            <a
+              href="https://vm.tiktok.com/ZN8DeKecV/"
+              target="_blank" rel="noreferrer"
+              className={`${styles.social} ${styles.tt}`}
+              aria-label="TikTok"
+            >
+              <FaTiktok size={16} />
             </a>
           </div>
         </div>

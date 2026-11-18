@@ -88,6 +88,7 @@
 .wa { background: #25D366; }
 .ig { background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
 .fb { background: #1877f2; }
+.tt { background: #000; }
 
 /* Nav columns */
 .col {}
