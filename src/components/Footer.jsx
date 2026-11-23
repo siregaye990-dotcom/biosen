@@ -35,7 +35,7 @@ export default function Footer() {
               <FaWhatsapp size={16} />
             </a>
             <a
-              href="https://front-bio-yree.vercel.app/"
+              href="https://www.instagram.com/sweetbio_senegal/"
               target="_blank" rel="noreferrer"
               className={`${styles.social} ${styles.ig}`}
               aria-label="Instagram"
